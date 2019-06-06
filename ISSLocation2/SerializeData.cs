@@ -10,7 +10,7 @@ namespace ISSLocation2
 {
     static class SerializeData
     {
-        public static void serializeData(string ISSReadings)
+        public static void save(string ISSReadings)
         {
             if (!File.Exists(@"C:\intel\iss2.dat"))
             {
@@ -22,7 +22,7 @@ namespace ISSLocation2
             
             else           //Just appends to the string and overrwrites the file with most recent being FIRST
             {
-                string oldData = deserializeData();
+                string oldData = read();
                 string allData = ISSReadings + "\r\n"+ oldData;
 
                 Stream file = File.Create(@"C:\Intel\iss2.dat");
@@ -32,7 +32,7 @@ namespace ISSLocation2
             }
         }
 
-        public static string deserializeData()
+        public static string read()
         {
             string allData = "";
 

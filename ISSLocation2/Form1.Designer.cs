@@ -1,6 +1,6 @@
 ﻿namespace ISSLocation2
 {
-    partial class Form1
+    partial class ISSForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ISSForm));
+            this.currentLocationButton = new System.Windows.Forms.Button();
+            this.currentLocationTxtBox = new System.Windows.Forms.TextBox();
+            this.mainContentTxtBox = new System.Windows.Forms.TextBox();
+            this.directionsTxtBox = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.clearLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,56 +40,54 @@
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.darkModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.normalModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.viewPastDataButton = new System.Windows.Forms.Button();
+            this.pastDataTxtBox = new System.Windows.Forms.TextBox();
+            this.ISSPicBox = new System.Windows.Forms.PictureBox();
+            this.stopWatchTxtBox = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ISSPicBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // currentLocationButton
             // 
-            this.button1.Location = new System.Drawing.Point(393, 104);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 27);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Current";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.currentLocationButton.Location = new System.Drawing.Point(32, 88);
+            this.currentLocationButton.Name = "currentLocationButton";
+            this.currentLocationButton.Size = new System.Drawing.Size(87, 27);
+            this.currentLocationButton.TabIndex = 0;
+            this.currentLocationButton.Text = "Current";
+            this.currentLocationButton.UseVisualStyleBackColor = true;
+            this.currentLocationButton.Click += new System.EventHandler(this.currentLocationButton_Click);
             // 
-            // textBox1
+            // currentLocationTxtBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(384, 59);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(116, 23);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.currentLocationTxtBox.Location = new System.Drawing.Point(12, 59);
+            this.currentLocationTxtBox.Name = "currentLocationTxtBox";
+            this.currentLocationTxtBox.ReadOnly = true;
+            this.currentLocationTxtBox.Size = new System.Drawing.Size(133, 23);
+            this.currentLocationTxtBox.TabIndex = 1;
             // 
-            // textBox2
+            // mainContentTxtBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(157, 169);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox2.Size = new System.Drawing.Size(525, 300);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.mainContentTxtBox.Location = new System.Drawing.Point(157, 144);
+            this.mainContentTxtBox.Multiline = true;
+            this.mainContentTxtBox.Name = "mainContentTxtBox";
+            this.mainContentTxtBox.ReadOnly = true;
+            this.mainContentTxtBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.mainContentTxtBox.Size = new System.Drawing.Size(525, 300);
+            this.mainContentTxtBox.TabIndex = 2;
             // 
-            // textBox3
+            // directionsTxtBox
             // 
-            this.textBox3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.textBox3.Location = new System.Drawing.Point(157, 59);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(185, 84);
-            this.textBox3.TabIndex = 3;
-            this.textBox3.Text = "This application will show you how far you are from the Internation Space Station" +
+            this.directionsTxtBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.directionsTxtBox.Location = new System.Drawing.Point(157, 59);
+            this.directionsTxtBox.Multiline = true;
+            this.directionsTxtBox.Name = "directionsTxtBox";
+            this.directionsTxtBox.ReadOnly = true;
+            this.directionsTxtBox.Size = new System.Drawing.Size(525, 56);
+            this.directionsTxtBox.TabIndex = 3;
+            this.directionsTxtBox.Text = "This application will show you how far you are from the Internation Space Station" +
     "!\r\nJust click the \"current\" button to find out!";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.directionsTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // menuStrip1
             // 
@@ -103,7 +102,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(904, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // toolStripMenuItem1
             // 
@@ -136,72 +134,83 @@
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
             this.optionsToolStripMenuItem.Text = "Options";
-            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
             // darkModeToolStripMenuItem
             // 
             this.darkModeToolStripMenuItem.Name = "darkModeToolStripMenuItem";
-            this.darkModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.darkModeToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.darkModeToolStripMenuItem.Text = "Dark Mode";
             this.darkModeToolStripMenuItem.Click += new System.EventHandler(this.darkModeToolStripMenuItem_Click);
             // 
             // normalModeToolStripMenuItem
             // 
             this.normalModeToolStripMenuItem.Name = "normalModeToolStripMenuItem";
-            this.normalModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.normalModeToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.normalModeToolStripMenuItem.Text = "Normal Mode";
             this.normalModeToolStripMenuItem.Click += new System.EventHandler(this.normalModeToolStripMenuItem_Click);
             // 
-            // button2
+            // viewPastDataButton
             // 
-            this.button2.Location = new System.Drawing.Point(569, 137);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 27);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "View";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.viewPastDataButton.Location = new System.Drawing.Point(32, 222);
+            this.viewPastDataButton.Name = "viewPastDataButton";
+            this.viewPastDataButton.Size = new System.Drawing.Size(87, 27);
+            this.viewPastDataButton.TabIndex = 5;
+            this.viewPastDataButton.Text = "View";
+            this.viewPastDataButton.UseVisualStyleBackColor = true;
+            this.viewPastDataButton.Click += new System.EventHandler(this.viewPastDataButton_Click);
             // 
-            // textBox4
+            // pastDataTxtBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(549, 59);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(133, 72);
-            this.textBox4.TabIndex = 6;
-            this.textBox4.Text = "Click here to view saved data.\r\nThe most recent appearing first.";
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.pastDataTxtBox.Location = new System.Drawing.Point(12, 144);
+            this.pastDataTxtBox.Multiline = true;
+            this.pastDataTxtBox.Name = "pastDataTxtBox";
+            this.pastDataTxtBox.ReadOnly = true;
+            this.pastDataTxtBox.Size = new System.Drawing.Size(133, 72);
+            this.pastDataTxtBox.TabIndex = 6;
+            this.pastDataTxtBox.Text = "Click here to view saved data.\r\nThe most recent appearing first.";
+            this.pastDataTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // pictureBox1
+            // ISSPicBox
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(688, 169);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(188, 181);
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.ISSPicBox.Location = new System.Drawing.Point(688, 144);
+            this.ISSPicBox.Name = "ISSPicBox";
+            this.ISSPicBox.Size = new System.Drawing.Size(188, 181);
+            this.ISSPicBox.TabIndex = 7;
+            this.ISSPicBox.TabStop = false;
             // 
-            // Form1
+            // stopWatchTxtBox
+            // 
+            this.stopWatchTxtBox.Location = new System.Drawing.Point(689, 59);
+            this.stopWatchTxtBox.Multiline = true;
+            this.stopWatchTxtBox.Name = "stopWatchTxtBox";
+            this.stopWatchTxtBox.ReadOnly = true;
+            this.stopWatchTxtBox.Size = new System.Drawing.Size(133, 56);
+            this.stopWatchTxtBox.TabIndex = 8;
+            this.stopWatchTxtBox.Text = "Reading Taken in __ Milliseconds";
+            this.stopWatchTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // ISSForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(904, 520);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.stopWatchTxtBox);
+            this.Controls.Add(this.ISSPicBox);
+            this.Controls.Add(this.pastDataTxtBox);
+            this.Controls.Add(this.viewPastDataButton);
+            this.Controls.Add(this.directionsTxtBox);
+            this.Controls.Add(this.mainContentTxtBox);
+            this.Controls.Add(this.currentLocationTxtBox);
+            this.Controls.Add(this.currentLocationButton);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "Form1";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "ISSForm";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ISSPicBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,20 +218,21 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button currentLocationButton;
+        private System.Windows.Forms.TextBox currentLocationTxtBox;
+        private System.Windows.Forms.TextBox mainContentTxtBox;
+        private System.Windows.Forms.TextBox directionsTxtBox;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem exitProgramToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem darkModeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem normalModeToolStripMenuItem;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button viewPastDataButton;
+        private System.Windows.Forms.TextBox pastDataTxtBox;
         private System.Windows.Forms.ToolStripMenuItem clearLogsToolStripMenuItem;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox ISSPicBox;
+        private System.Windows.Forms.TextBox stopWatchTxtBox;
     }
 }
 

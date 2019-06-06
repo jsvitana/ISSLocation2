@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -13,66 +14,67 @@ using System.Windows.Forms;
 
 namespace ISSLocation2
 {
-    public partial class Form1 : Form
+    public partial class ISSForm : Form
     {
         WebClient wc = new WebClient();
+        Stopwatch watch = new Stopwatch();
 
-        public Form1()
+        public ISSForm()
         {
             InitializeComponent();
+
             CurrentLocation.setLocation();                //Up here so it sets your current location and displays it in the box since this method will only need to run once
-            textBox1.Text = CurrentLocation.currentZip;
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            wc.DownloadFile(@"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgC1bwfmGkLVM3fXIYOTVJ5isWkh2piaNmJ1Lr5_tq8jC4iL1t", @"c:\Intel\ISS.png");
-            Image picBox = new Bitmap(@"c:\Intel\ISS.png");
-            pictureBox1.Image = picBox;           
+            currentLocationTxtBox.Text = CurrentLocation.currentZip;
+
+            ISSPicBox.SizeMode = PictureBoxSizeMode.StretchImage;   //Makes image fit into the image box
+            ISSPicBox.Image = Properties.Resources.ISSPic;          //Gets png from project resources
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void currentLocationButton_Click(object sender, EventArgs e)
         {
+            //Start the stopwatch to see how long reading takes
+            watch.Start();
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
             //Uses ISS class to find where the ISS is and set information on that
             ISSLocation.setISSLocation();
-
+            string overWater = "";
             var locationData = "";
+            var seconds = 0.0;
 
             //Finds distance in miles with decimal values of lat and long from current Location and ISS location
             double distance = GeoCalculator.GetDistance(CurrentLocation.currentDLat, CurrentLocation.currentDLong, ISSLocation.ISSDLat, ISSLocation.ISSDLong);
-
-            if (ISSLocation.bodyOfWater)  //Theres definitley a better way to structure this
+         
+            if (ISSLocation.bodyOfWater)
             {
-                locationData = $"Your chosen zip: {CurrentLocation.currentZip}\r\n" +
-                                $"Your chosen location: {CurrentLocation.currentCity}\r\n" +
-                                $"Your chosen state: {CurrentLocation.currentState}\r\n" +
-                                $"Distance from ISS: {distance} miles\r\n" +
-                                $"The ISS is currently over water.\r\n" +
-                                $"Time pinpointed: {ISSLocation.timeAccessed}\r\n";
+                overWater = $"The ISS is currently over water.\r\n";
             }
             else
             {
-                locationData = $"Your chosen zip: {CurrentLocation.currentZip}\r\n" +
-                                $"Your chosen location: {CurrentLocation.currentCity}\r\n" +
-                                $"Your chosen state: {CurrentLocation.currentState}\r\n" +
-                                $"Distance from ISS: {distance} miles\r\n" +
-                                $"ISS country: {ISSLocation.ISSCountry}\r\n" +
-                                $"Time pinpointed: {ISSLocation.timeAccessed}\r\n";
+                overWater = $"ISS country: {ISSLocation.ISSCountry}\r\n";
+
             }
-            textBox2.Text = locationData;
-            SerializeData.serializeData(locationData); //Saves after every click
-        } 
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            locationData = $"Your chosen zip: {CurrentLocation.currentZip}\r\n" +
+                           $"Your chosen location: {CurrentLocation.currentCity}\r\n" +
+                           $"Your chosen state: {CurrentLocation.currentState}\r\n" +
+                           $"Distance from ISS: {distance} miles\r\n" +
+                           overWater +
+                           $"Time pinpointed: {ISSLocation.timeAccessed}\r\n";
 
+            mainContentTxtBox.Text = locationData;
+
+            //sets stopwatch textbox to show fast it did it in
+            watch.Stop();
+            TimeSpan ts = watch.Elapsed;
+            seconds = ts.Milliseconds / 1000.0;
+            stopWatchTxtBox.Text = $"Reading Taken in {seconds} Second(s)!";
+
+            SerializeData.save(locationData); //Saves after every click
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void viewPastDataButton_Click(object sender, EventArgs e)
         {
-
+            mainContentTxtBox.Text = SerializeData.read();
         }
 
         private void exitProgramToolStripMenuItem_Click(object sender, EventArgs e)
@@ -82,37 +84,22 @@ namespace ISSLocation2
 
         private void darkModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            wc.DownloadFile(@"https://wallpapercave.com/wp/saiUfL2.png", @"c:\Intel\image.png");
-            Image myImage = new Bitmap(@"c:\Intel\image.png");
+            Image myImage = Properties.Resources.SpaceBackground;
             this.BackgroundImage = myImage;
-            textBox2.BackColor = Color.Black;
-            textBox2.ForeColor = Color.White;
+            mainContentTxtBox.BackColor = Color.Black;
+            mainContentTxtBox.ForeColor = Color.White;
 
-            textBox3.BackColor = Color.Black;
-            textBox3.ForeColor = Color.White;
+            directionsTxtBox.BackColor = Color.Black;
+            directionsTxtBox.ForeColor = Color.White;
 
-            textBox1.BackColor = Color.Black;
-            textBox1.ForeColor = Color.White;
+            currentLocationTxtBox.BackColor = Color.Black;
+            currentLocationTxtBox.ForeColor = Color.White;
 
-            textBox4.BackColor = Color.Black;
-            textBox4.ForeColor = Color.White;
+            pastDataTxtBox.BackColor = Color.Black;
+            pastDataTxtBox.ForeColor = Color.White;
 
-            //menuStrip1.BackColor = Color.Black;
-            //menuStrip1.ForeColor = Color.White;           
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+            stopWatchTxtBox.BackColor = Color.Black;
+            stopWatchTxtBox.ForeColor = Color.White;
 
         }
 
@@ -120,35 +107,25 @@ namespace ISSLocation2
         {
             this.BackgroundImage = null;
             this.BackColor = Color.White;
-            textBox2.BackColor = Color.White;
-            textBox2.ForeColor = Color.Black;
+            mainContentTxtBox.BackColor = Color.White;
+            mainContentTxtBox.ForeColor = Color.Black;
 
-            textBox3.BackColor = Color.White;
-            textBox3.ForeColor = Color.Black;
+            directionsTxtBox.BackColor = Color.White;
+            directionsTxtBox.ForeColor = Color.Black;
 
-            textBox4.BackColor = Color.White;
-            textBox4.ForeColor = Color.Black;
+            pastDataTxtBox.BackColor = Color.White;
+            pastDataTxtBox.ForeColor = Color.Black;
 
-            textBox1.BackColor = Color.White;
-            textBox1.ForeColor = Color.Black;
-        
-            //menuStrip1.BackColor = Color.White;
-            //menuStrip1.ForeColor = Color.Black;
-        }
+            currentLocationTxtBox.BackColor = Color.White;
+            currentLocationTxtBox.ForeColor = Color.Black;
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            textBox2.Text = SerializeData.deserializeData();
+            stopWatchTxtBox.BackColor = Color.White;
+            stopWatchTxtBox.ForeColor = Color.Black;
         }
 
         private void clearLogsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SerializeData.clearLogs();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -17,7 +17,7 @@ namespace ISSLocation2
         public static double ISSDLong;
         public static string ISSCity;         //City is only used in certain places
         public static string ISSCountry;      //figure out about getting more location options for UI such as state/region even in different countries
-        public static bool bodyOfWater = false;     //is it over water?
+        public static bool bodyOfWater = false;     //Will change if ISS is over water
         public static DateTime timeAccessed;
 
         public static void setISSLocation()
@@ -54,7 +54,7 @@ namespace ISSLocation2
 
         public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
         {
-            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
             return dtDateTime;
         }
