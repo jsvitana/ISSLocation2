@@ -10,18 +10,19 @@ namespace ISSLocation2
 {
     static class ISSLocation
     {
-        public static WebClient wc = new WebClient();
         public static string ISSLat;
         public static string ISSLong;
-        public static double ISSDLat;         //D Lat and D long are just the decimal equivelent to use with the geolocator
+        public static double ISSDLat;               //D Lat and D long are just the decimal equivelent to use with the geolocator
         public static double ISSDLong;
-        public static string ISSCity;         //City is only used in certain places
-        public static string ISSCountry;      //figure out about getting more location options for UI such as state/region even in different countries
+        public static string ISSState;              //State is only used in certain places
+        public static string ISSCountry;            //figure out about getting more location options for UI such as state/region even in different countries
         public static bool bodyOfWater = false;     //Will change if ISS is over water
         public static DateTime timeAccessed;
 
         public static void setISSLocation()
         {
+            WebClient wc = new WebClient();
+
             //Data from ISS API
             var jsonData = wc.DownloadString("http://api.open-notify.org/iss-now.json");
             dynamic ISSLongLat = JValue.Parse(jsonData);
@@ -44,6 +45,7 @@ namespace ISSLocation2
                 {
                     bodyOfWater = false;
                     ISSCountry = ISSInfo.results[0].components.country;
+                    ISSState = ISSInfo.results[0].components.state;
                 }
             }
             catch

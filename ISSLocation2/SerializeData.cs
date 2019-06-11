@@ -12,14 +12,13 @@ namespace ISSLocation2
     {
         public static void save(string ISSReadings)
         {
-            if (!File.Exists(@"C:\intel\iss2.dat"))
+            if (!File.Exists(@"C:\intel\iss2.dat"))    //Creates initial file if it does not exist
             {
                 Stream file = File.Create(@"C:\Intel\iss2.dat");
                 BinaryFormatter serializer = new BinaryFormatter();
                 serializer.Serialize(file, ISSReadings);
                 file.Close();
             }
-            
             else           //Just appends to the string and overrwrites the file with most recent being FIRST
             {
                 string oldData = read();

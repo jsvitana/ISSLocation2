@@ -16,9 +16,6 @@ namespace ISSLocation2
 {
     public partial class ISSForm : Form
     {
-        WebClient wc = new WebClient();
-        Stopwatch watch = new Stopwatch();
-
         public ISSForm()
         {
             InitializeComponent();
@@ -32,6 +29,8 @@ namespace ISSLocation2
 
         private void currentLocationButton_Click(object sender, EventArgs e)
         {
+            Stopwatch watch = new Stopwatch();
+
             //Start the stopwatch to see how long reading takes
             watch.Start();
 
@@ -50,13 +49,14 @@ namespace ISSLocation2
             }
             else
             {
-                overWater = $"ISS country: {ISSLocation.ISSCountry}\r\n";
-
+                overWater = $"ISS country: {ISSLocation.ISSCountry}\r\nISS State: {ISSLocation.ISSState}\r\n";
             }
 
             locationData = $"Your chosen zip: {CurrentLocation.currentZip}\r\n" +
                            $"Your chosen location: {CurrentLocation.currentCity}\r\n" +
                            $"Your chosen state: {CurrentLocation.currentState}\r\n" +
+                           $"ISS Latitude: {ISSLocation.ISSLat}\r\n" +
+                           $"ISS Longitude: {ISSLocation.ISSLong}\r\n" +
                            $"Distance from ISS: {distance} miles\r\n" +
                            overWater +
                            $"Time pinpointed: {ISSLocation.timeAccessed}\r\n";

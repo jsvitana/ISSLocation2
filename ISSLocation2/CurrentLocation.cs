@@ -10,7 +10,7 @@ namespace ISSLocation2
 {
     static class CurrentLocation
     {
-        private static WebClient wc = new WebClient();
+        
         public static string currentCity;
         public static string currentState;
         public static string currentZip;
@@ -21,6 +21,8 @@ namespace ISSLocation2
 
         public static void setLocation()
         {
+            WebClient wc = new WebClient();
+
             //Get info about location of IP address
             var jsonData = wc.DownloadString("http://ip-api.com/json/");
             dynamic locationObject = JValue.Parse(jsonData);
