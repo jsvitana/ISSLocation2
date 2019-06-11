@@ -50,7 +50,8 @@ namespace ISSLocation2
             }
             catch
             {
-                ISSCountry = "The ISS is currently over a remote location, please try again soon!";               
+                ISSCountry = "The ISS is currently over a remote location, please try again soon!";
+                ISSState = "*";
             }
         }
 
